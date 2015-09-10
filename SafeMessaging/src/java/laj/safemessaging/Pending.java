@@ -9,14 +9,14 @@ package laj.safemessaging;
  *
  * @author Leandro
  */
-public class User {
+public class Pending {
     
     private String userName;
-    private String phoneNumber;
+    private byte[] keyBytes;
 
-    public User(String userName, String phoneNumber){
+    public Pending(String userName, byte[] keyBytes){
     
-        this.setPhoneNumber(phoneNumber);
+        this.setKeyBytes(keyBytes);
         this.setUserName(userName);
     
     }
@@ -29,20 +29,21 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public byte[] getKeyBytes() {
+        return keyBytes;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setKeyBytes(byte[] keyBytes) {
+        this.keyBytes = keyBytes;
     }
     
     @Override
     public String toString(){
     
-        String string = userName+";"+phoneNumber;
+        String string = userName+";"+new String(keyBytes);
         
         return string;
     
     }
+    
 }

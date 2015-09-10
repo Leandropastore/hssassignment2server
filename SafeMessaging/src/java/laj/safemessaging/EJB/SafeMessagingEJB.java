@@ -32,7 +32,7 @@ public class SafeMessagingEJB implements SafeMessagingEJBLocal {
     
     }
     
-    //
+    //Called by client to get a list of other users' numbers
     @Override
     public String getNumbers(){
         
