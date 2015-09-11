@@ -7,7 +7,7 @@ package laj.safemessaging.EJB;
 
 
 import javax.ejb.Stateless;
-import laj.resources.AES;
+import laj.safemessaging.SafeMessaging;
 
 /**
  *
@@ -16,14 +16,21 @@ import laj.resources.AES;
 @Stateless
 public class SafeMessagingEJB implements SafeMessagingEJBLocal {
     
+    SafeMessaging safeMessaging;
+    
     //Called by client only on the first time of contact
     @Override
     public String firstContact(String username) {
         
-        AES aes = new AES();
-        return "A password was sent to you. Please, insert it in your device to complete the registration.";
+        safeMessaging = new SafeMessaging();
+        if(safeMessaging.generatePendingAccount(username)){
+            safeMessaging.persist();
+            return "A password was sent to you. Please, insert it in your device to complete the registration.";
+        }
+        else
+            return "This username already exists, please try another one.";
     }
-    
+    /*
     //Called by client only on the second time of contact, to register its number and public key
     @Override
     public String registerDevice(){
@@ -73,7 +80,7 @@ public class SafeMessagingEJB implements SafeMessagingEJBLocal {
         
         return ;
     
-    }
+    }*/
 
     
     // Add business logic below. (Right-click in editor and choose

@@ -5,6 +5,8 @@
  */
 package laj.safemessaging;
 
+import laj.resources.Formatter;
+
 /**
  *
  * @author Leandro
@@ -26,7 +28,7 @@ public class User {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = Formatter.formatString(userName);
     }
 
     public String getPhoneNumber() {
@@ -34,7 +36,7 @@ public class User {
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = Formatter.formatString(phoneNumber);
     }
     
     @Override

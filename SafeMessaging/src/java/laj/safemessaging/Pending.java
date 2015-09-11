@@ -5,6 +5,8 @@
  */
 package laj.safemessaging;
 
+import laj.resources.Formatter;
+
 /**
  *
  * @author Leandro
@@ -26,7 +28,7 @@ public class Pending {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = Formatter.formatString(userName);
     }
 
     public byte[] getKeyBytes() {

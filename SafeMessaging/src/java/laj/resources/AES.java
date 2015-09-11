@@ -42,7 +42,7 @@ public class AES {
         Cipher c = Cipher.getInstance(ALGORITHM);
         c.init(Cipher.ENCRYPT_MODE, key);
 
-        byte[] encrValue = c.doFinal(valueToEncrypt.getBytes());
+        byte[] encrValue = c.doFinal(valueToEncrypt.getBytes("UTF-8"));
         
         return encrValue;
         

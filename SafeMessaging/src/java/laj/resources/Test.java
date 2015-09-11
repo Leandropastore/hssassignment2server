@@ -22,6 +22,8 @@ public class Test {
 //        ArrayList<Message> msgs = lm.importMessages();
 //        for(Message m:msgs)
 //            System.out.println(m);
+        ArrayList<String> test = new ArrayList<String>();
         
+        System.out.println(test.size());
     }
 }

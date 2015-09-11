@@ -7,6 +7,7 @@ package laj.safemessaging;
 
 import java.util.ArrayList;
 import laj.lib.LibManager;
+import laj.resources.AES;
 
 /**
  *
@@ -31,7 +32,7 @@ public class SafeMessaging {
     
     public void persistUsers(){
     
-        String libString = "";
+        String libString = ""+users.size()+"\r\n";
         for(User u:users)
             libString+=u+"\r\n";
         libManager.createLibrary(libString, "user");
@@ -40,25 +41,34 @@ public class SafeMessaging {
     
     public void persistMessages(){
     
-        String libString = "";
+        String libString = ""+messages.size()+"\r\n";
         for(Message m:messages)
             libString+=m+"\r\n";
         libManager.createLibrary(libString, "message");
     
     }
     
-    public void persistPending(){
+    public void persistPendings(){
     
-        String libString = "";
+        String libString = ""+pendings.size()+"\r\n";
         for(Pending p:pendings)
             libString+=p+"\r\n";
         libManager.createLibrary(libString, "pending");
     
     }
+        
+    public void persist(){
     
-    public boolean addUser(User user){
+        this.persistMessages();
+        this.persistPendings();
+        this.persistUsers();
+        
+    }
     
-        if(!userAlreadyExists(user)){
+    
+    public boolean add(User user){
+    
+        if(!alreadyExists(user)){
             users.add(user);
             return true;
         }
@@ -67,10 +77,30 @@ public class SafeMessaging {
     
     }
     
-    public boolean userAlreadyExists(User user){
+    public boolean add(Pending pending){
+    
+        if(!alreadyExists(pending)){
+            pendings.add(pending);
+            return true;
+        }
+        else
+            return false;
+    
+    }
+    
+    public boolean alreadyExists(User user){
     
         for(User u:users)
             if(u.getUserName().equals(user.getUserName()))
+                return true;
+        return false;
+    
+    }
+    
+    public boolean alreadyExists(Pending pending){
+    
+        for(Pending p:pendings)
+            if(p.getUserName().equals(pending.getUserName()))
                 return true;
         return false;
     
@@ -88,6 +118,12 @@ public class SafeMessaging {
         return messages;
     }
     
+    public boolean generatePendingAccount(String userName){
     
+        AES randomKey = new AES();
+        System.out.println(new String(randomKey.getKey()));
+        return add(new Pending(userName,randomKey.getKey()));
     
+    }
+
 }

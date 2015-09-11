@@ -14,13 +14,13 @@ import javax.ejb.Local;
 @Local
 public interface SafeMessagingEJBLocal {
 
-    String firstContact(String userName);
+    String firstContact(String userName);/*
     String registerDevice();
     String getNumbers();
     String getPublicKey();
     String sendNormalMessage();
     String sendSecureMessage();
     String sendHashedMessage();
-    String sendSecureHashedMessage();
+    String sendSecureHashedMessage();*/
     
 }

@@ -5,6 +5,8 @@
  */
 package laj.safemessaging;
 
+import laj.resources.Formatter;
+
 /**
  *
  * @author Leandro
@@ -28,7 +30,7 @@ public class Message {
     }
 
     public void setMessage(String message) {
-        this.message = formatString(message);
+        this.message = Formatter.formatString(message);
     }
 
     public String getFromUser() {
@@ -36,7 +38,7 @@ public class Message {
     }
 
     public void setFromUser(String fromUser) {
-        this.fromUser = fromUser;
+        this.fromUser = Formatter.formatString(fromUser);
     }
 
     public String getToUser() {
@@ -44,13 +46,7 @@ public class Message {
     }
 
     public void setToUser(String toUser) {
-        this.toUser = toUser;
-    }
-    
-    public String formatString(String string){
-    
-        return string.replaceAll("(\\r|\\n|;)", "");
-    
+        this.toUser = Formatter.formatString(toUser);
     }
     
     @Override
