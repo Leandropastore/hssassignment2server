@@ -21,12 +21,12 @@ public class Test {
     public static void main(String[] args) {
 
         try {
-            AES test = new AES("aaaaaaassssdfvcf");
+            AES test = new AES(ByteManager.createBytes("-52,83,-91,-1,-65,-99,-86,-36,-64,50,37,-102,-67,-121,-98,-113"));
             //System.out.println(new String(test.encrypt("Leandro"),"US-ASCII"));
             //System.out.println(test.decrypt("�7�2	dD�R�3XT�"));
             ByteManager bm = new ByteManager();
             
-            byte[] ahaha = test.encrypt("LeandroLeandroLeandroLeandroLeandro");
+            byte[] ahaha = test.encrypt("Leandro");
             //String aha = new String(ahaha,"US-ASCII");
             String ahahaha = bm.createString(ahaha);
             byte[] ahahahaha = bm.createBytes(ahahaha);

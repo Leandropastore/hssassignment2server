@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import laj.resources.ByteManager;
 import laj.safemessaging.Message;
 import laj.safemessaging.Pending;
 import laj.safemessaging.User;
@@ -97,7 +98,7 @@ public class LibManager {
             String[] tokens = line.split(";");
             String userName = tokens[0];
             String key = tokens[1];
-            return new Pending(userName,key.getBytes("UTF-8"));
+            return new Pending(userName,ByteManager.createBytes(key));
         }
         else
             return null;

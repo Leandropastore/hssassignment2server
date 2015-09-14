@@ -2,7 +2,9 @@ package laj.resources;
 
 import java.security.Key;
 import java.security.SecureRandom;
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.spec.SecretKeySpec;
 
 public class AES {
@@ -89,9 +91,14 @@ public class AES {
         Cipher c = Cipher.getInstance(CIPHER);
         c.init(Cipher.DECRYPT_MODE, key);
 
-        byte[] decrValue = c.doFinal(ByteManager.createBytes(valueToDecrypt));
+        byte[] decrValue;
+        try{
+            decrValue = c.doFinal(ByteManager.createBytes(valueToDecrypt));
+        }catch(IllegalBlockSizeException | BadPaddingException ex){
+            return null;
+        }
         
-        return ByteManager.createString(decrValue);
+        return ByteManager.reformatString(ByteManager.createString(decrValue));
         
     }
 

@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import laj.lib.LibManager;
 import laj.resources.AES;
+import laj.resources.ByteManager;
 
 /**
  *
@@ -150,14 +151,14 @@ public class SafeMessaging {
     public boolean generatePendingAccount(String userName){
     
         AES randomKey = new AES();
-        System.out.println(new String(randomKey.getKey()));
+        System.out.println(ByteManager.createString(randomKey.getKey()));
         return add(new Pending(userName,randomKey.getKey()));
     
     }
     
-    public void registerUser(String cipheredRegistration){
+    public boolean registerUser(String cipheredRegistration){
     
-        remove(checkCipheredRegistration(cipheredRegistration));
+        return remove(checkCipheredRegistration(cipheredRegistration));
     
     }
     
@@ -170,9 +171,10 @@ public class SafeMessaging {
             try {
                 aes = new AES(p.getKeyBytes());
                 result = aes.decrypt(cipheredRegistration);
-                for(Pending pe:pendings)
-                    if(result.startsWith(pe.getUserName()))
-                        return p;
+                if(result!=null)
+                    for(Pending pe:pendings)
+                        if(result.startsWith(pe.getUserName()))
+                            return p;
             } catch (Exception ex) {
                 Logger.getLogger(SafeMessaging.class.getName()).log(Level.SEVERE, null, ex);
             }

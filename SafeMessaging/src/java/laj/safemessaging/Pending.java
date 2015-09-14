@@ -5,6 +5,7 @@
  */
 package laj.safemessaging;
 
+import laj.resources.ByteManager;
 import laj.resources.Formatter;
 
 /**
@@ -42,7 +43,7 @@ public class Pending {
     @Override
     public String toString(){
     
-        String string = userName+";"+new String(keyBytes);
+        String string = userName+";"+ByteManager.createString(keyBytes);
         
         return string;
     
