@@ -6,6 +6,8 @@
 package laj.safemessaging;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import laj.lib.LibManager;
 import laj.resources.AES;
 
@@ -106,6 +108,33 @@ public class SafeMessaging {
     
     }
     
+    public boolean remove(User user){
+    
+        if(users.remove(user))
+            return true;
+        else
+            return false;
+    
+    }
+    
+    public boolean remove(Pending pending){
+    
+        if(pendings.remove(pending))
+            return true;
+        else
+            return false;
+    
+    }
+    
+    public boolean remove(Message message){
+    
+        if(messages.remove(message))
+            return true;
+        else
+            return false;
+    
+    }
+    
     public ArrayList<User> getUsers() {
         return users;
     }
@@ -123,6 +152,33 @@ public class SafeMessaging {
         AES randomKey = new AES();
         System.out.println(new String(randomKey.getKey()));
         return add(new Pending(userName,randomKey.getKey()));
+    
+    }
+    
+    public void registerUser(String cipheredRegistration){
+    
+        remove(checkCipheredRegistration(cipheredRegistration));
+    
+    }
+    
+    public Pending checkCipheredRegistration(String cipheredRegistration){
+    
+        String result;
+        AES aes;
+        for(Pending p:pendings){
+            
+            try {
+                aes = new AES(p.getKeyBytes());
+                result = aes.decrypt(cipheredRegistration);
+                for(Pending pe:pendings)
+                    if(result.startsWith(pe.getUserName()))
+                        return p;
+            } catch (Exception ex) {
+                Logger.getLogger(SafeMessaging.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
+        return null;
     
     }
 

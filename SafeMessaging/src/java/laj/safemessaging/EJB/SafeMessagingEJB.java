@@ -25,20 +25,25 @@ public class SafeMessagingEJB implements SafeMessagingEJBLocal {
         safeMessaging = new SafeMessaging();
         if(safeMessaging.generatePendingAccount(username)){
             safeMessaging.persist();
+            safeMessaging = null;
             return "A password was sent to you. Please, insert it in your device to complete the registration.";
         }
-        else
+        else{
+            safeMessaging = null;
             return "This username already exists, please try another one.";
+        }
     }
-    /*
+    
     //Called by client only on the second time of contact, to register its number and public key
     @Override
-    public String registerDevice(){
+    public String registerUser(String cipheredRegistration){
         
-        return ;
+        safeMessaging = new SafeMessaging();
+        safeMessaging.registerUser(cipheredRegistration);
+        return "blah";
     
     }
-    
+    /*
     //Called by client to get a list of other users' numbers
     @Override
     public String getNumbers(){

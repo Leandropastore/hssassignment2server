@@ -27,5 +27,10 @@ public class SafeMessagingWebService {
     public String firstContact(@WebParam(name = "userName") String userName) {
         return ejbRef.firstContact(userName);
     }
+
+    @WebMethod(operationName = "registerUser")
+    public String registerUser(@WebParam(name = "cipheredRegistration") String cipheredRegistration) {
+        return ejbRef.registerUser(cipheredRegistration);
+    }
     
 }
