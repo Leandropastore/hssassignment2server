@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package laj.safemessaging;
+package leandro.safemessaging;
 
-import laj.resources.Formatter;
+import leandro.resources.ByteManager;
+import leandro.resources.Formatter;
 
 /**
  *
  * @author Leandro
  */
-public class User {
+public class Pending {
     
     private String userName;
-    private String phoneNumber;
+    private byte[] keyBytes;
 
-    public User(String userName, String phoneNumber){
+    public Pending(String userName, byte[] keyBytes){
     
-        this.setPhoneNumber(phoneNumber);
+        this.setKeyBytes(keyBytes);
         this.setUserName(userName);
     
     }
@@ -31,20 +32,21 @@ public class User {
         this.userName = Formatter.formatString(userName);
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public byte[] getKeyBytes() {
+        return keyBytes;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = Formatter.formatString(phoneNumber);
+    public void setKeyBytes(byte[] keyBytes) {
+        this.keyBytes = keyBytes;
     }
     
     @Override
     public String toString(){
     
-        String string = userName+";"+phoneNumber;
+        String string = userName+";"+ByteManager.createString(keyBytes);
         
         return string;
     
     }
+    
 }

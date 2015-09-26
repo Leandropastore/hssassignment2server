@@ -1,4 +1,4 @@
-package laj.lib;
+package leandro.lib;
 
 
 import java.io.BufferedReader;
@@ -9,10 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import laj.resources.ByteManager;
-import laj.safemessaging.Message;
-import laj.safemessaging.Pending;
-import laj.safemessaging.User;
+import leandro.resources.ByteManager;
+import leandro.safemessaging.Message;
+import leandro.safemessaging.Pending;
+import leandro.safemessaging.User;
 
 /**
  *
@@ -20,9 +20,9 @@ import laj.safemessaging.User;
  */
 public class LibManager {
 
-    private static final String userFileName = "C:\\Users\\Leandro\\Documents\\NetBeansProjects\\hssassignment2server\\SafeMessaging\\src\\java\\laj\\lib\\Users.txt";
-    private static final String pendingFileName = "C:\\Users\\Leandro\\Documents\\NetBeansProjects\\hssassignment2server\\SafeMessaging\\src\\java\\laj\\lib\\Pending.txt";
-    private static final String messageFileName = "C:\\Users\\Leandro\\Documents\\NetBeansProjects\\hssassignment2server\\SafeMessaging\\src\\java\\laj\\lib\\Message.txt";
+    private static final String userFileName = "C:\\Users\\Leandro\\Documents\\NetBeansProjects\\hssassignment2server\\SafeMessaging\\src\\java\\leandro\\lib\\Users.txt";
+    private static final String pendingFileName = "C:\\Users\\Leandro\\Documents\\NetBeansProjects\\hssassignment2server\\SafeMessaging\\src\\java\\leandro\\lib\\Pending.txt";
+    private static final String messageFileName = "C:\\Users\\Leandro\\Documents\\NetBeansProjects\\hssassignment2server\\SafeMessaging\\src\\java\\leandro\\lib\\Message.txt";
 
     public ArrayList<User> importUsers() {
         
@@ -50,13 +50,14 @@ public class LibManager {
 
     }
 
-    private User createUser(String line) {
+    public User createUser(String line) {
 
         if(line!=null){
             String[] tokens = line.split(";");
             String userName = tokens[0];
-            String phoneNumber = tokens[1];
-            return new User(userName,phoneNumber);
+            String phoneNumber = tokens[2];
+            byte[] publicKey = ByteManager.createBytes(tokens[1]);
+            return new User(userName,phoneNumber,publicKey);
         }
         else
             return null;
@@ -92,7 +93,7 @@ public class LibManager {
 
     }
 
-    private Pending createPending(String line) throws UnsupportedEncodingException {
+    public Pending createPending(String line) throws UnsupportedEncodingException {
 
         if(line!=null){
             String[] tokens = line.split(";");
@@ -131,7 +132,7 @@ public class LibManager {
 
     }
 
-    private Message createMessage(String line) {
+    public Message createMessage(String line) {
 
         if(line!=null){
             String[] tokens = line.split(";");

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package laj.webservices;
+package leandro.webservices;
 
 import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.ejb.Stateless;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import laj.safemessaging.EJB.SafeMessagingEJBLocal;
+import leandro.safemessaging.EJB.SafeMessagingEJBLocal;
 
 /**
  *
@@ -31,6 +31,11 @@ public class SafeMessagingWebService {
     @WebMethod(operationName = "registerUser")
     public String registerUser(@WebParam(name = "cipheredRegistration") String cipheredRegistration) {
         return ejbRef.registerUser(cipheredRegistration);
+    }
+
+    @WebMethod(operationName = "getPublicKey")
+    public String getPublicKey(@WebParam(name = "sender") String sender, @WebParam(name = "receiver") String receiver) {
+        return ejbRef.getPublicKey(sender, receiver);
     }
     
 }

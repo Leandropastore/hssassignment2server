@@ -1,4 +1,4 @@
-package laj.resources;
+package leandro.resources;
 
 
 import java.util.Base64;

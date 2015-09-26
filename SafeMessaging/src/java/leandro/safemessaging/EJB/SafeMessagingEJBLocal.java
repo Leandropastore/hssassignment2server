@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package laj.safemessaging.EJB;
+package leandro.safemessaging.EJB;
 
 import javax.ejb.Local;
 
@@ -15,9 +15,9 @@ import javax.ejb.Local;
 public interface SafeMessagingEJBLocal {
 
     String firstContact(String userName);
-    String registerUser(String cipheredRegistration);/*
+    String registerUser(String cipheredRegistration);
+    String getPublicKey(String sender,String receiver);/*
     String getNumbers();
-    String getPublicKey();
     String sendNormalMessage();
     String sendSecureMessage();
     String sendHashedMessage();

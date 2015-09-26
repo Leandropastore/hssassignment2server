@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package laj.safemessaging.EJB;
+package leandro.safemessaging.EJB;
 
 
 import javax.ejb.Stateless;
-import laj.safemessaging.SafeMessaging;
+import leandro.safemessaging.SafeMessaging;
 
 /**
  *
@@ -39,10 +39,26 @@ public class SafeMessagingEJB implements SafeMessagingEJBLocal {
     public String registerUser(String cipheredRegistration){
         
         safeMessaging = new SafeMessaging();
-        safeMessaging.registerUser(cipheredRegistration);
-        return "blah";
+        if(safeMessaging.registerUser(cipheredRegistration)){
+            safeMessaging.persist();
+            safeMessaging = null;
+            return "Account successfully registered.";
+        }else
+            return "Something went wrong. Please, check your key and try again.";
+        
     
     }
+    
+    @Override
+    public String getPublicKey(String sender,String receiver){
+        
+        safeMessaging = new SafeMessaging();
+        String response = safeMessaging.getPublicKey(sender, receiver);
+        safeMessaging = null;
+        return response;
+    
+    }
+    
     /*
     //Called by client to get a list of other users' numbers
     @Override
@@ -52,12 +68,7 @@ public class SafeMessagingEJB implements SafeMessagingEJBLocal {
     
     }
     
-    @Override
-    public String getPublicKey(){
-        
-        return ;
     
-    }
     
     @Override
     public String sendNormalMessage(){

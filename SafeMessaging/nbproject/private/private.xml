@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/laj/safemessaging/EJB/SafeMessagingEJB.java</file>
-            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/laj/safemessaging/EJB/SafeMessagingEJBLocal.java</file>
-            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/laj/resources/Test.java</file>
-            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/laj/safemessaging/Pending.java</file>
-            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/laj/webservices/SafeMessagingWebService.java</file>
-            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/laj/safemessaging/SafeMessaging.java</file>
-            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/laj/resources/AES.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/safemessaging/User.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/safemessaging/EJB/SafeMessagingEJB.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/lib/LibManager.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/webservices/SafeMessagingWebService.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/resources/Test.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/safemessaging/SafeMessaging.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/resources/RSA.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/safemessaging/EJB/SafeMessagingEJBLocal.java</file>
+            <file>file:/C:/Users/Leandro/Documents/NetBeansProjects/hssassignment2server/SafeMessaging/src/java/leandro/resources/ByteManager.java</file>
         </group>
     </open-files>
 </project-private>

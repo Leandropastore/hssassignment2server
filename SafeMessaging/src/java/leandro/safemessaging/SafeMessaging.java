@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package laj.safemessaging;
+package leandro.safemessaging;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import laj.lib.LibManager;
-import laj.resources.AES;
-import laj.resources.ByteManager;
+import leandro.lib.LibManager;
+import leandro.resources.AES;
+import leandro.resources.ByteManager;
+import leandro.resources.RSA;
 
 /**
  *
@@ -105,8 +106,20 @@ public class SafeMessaging {
         for(Pending p:pendings)
             if(p.getUserName().equals(pending.getUserName()))
                 return true;
+        for(User u:users)
+            if(u.getUserName().equals(pending.getUserName()))
+                return true;
+        
         return false;
     
+    }
+    
+    public User searchUserByName(String userName){
+    
+        for(User u:users)
+            if(userName.equals(u.getUserName()))
+                return u;
+        return null;
     }
     
     public boolean remove(User user){
@@ -158,7 +171,19 @@ public class SafeMessaging {
     
     public boolean registerUser(String cipheredRegistration){
     
-        return remove(checkCipheredRegistration(cipheredRegistration));
+        Pending p = checkCipheredRegistration(cipheredRegistration);
+        AES aes;
+        if(p!=null){
+            try {
+                aes = new AES(p.getKeyBytes());
+                String result = aes.decrypt(cipheredRegistration);
+                add(libManager.createUser(result));
+            } catch (Exception ex) {
+                Logger.getLogger(SafeMessaging.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return remove(p);
     
     }
     
@@ -181,6 +206,16 @@ public class SafeMessaging {
         
         }
         return null;
+    
+    }
+    
+    public String getPublicKey(String sender,String receiver){
+    
+        User uSender = searchUserByName(sender);
+        User uReceiver = searchUserByName(receiver);
+        
+        RSA rsa = new RSA(uSender.getPublicKey(),"public");
+        return ByteManager.createString(rsa.encryptWithPublic(uReceiver.toString()));
     
     }
 

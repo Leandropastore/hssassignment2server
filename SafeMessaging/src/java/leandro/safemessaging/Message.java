@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package laj.safemessaging;
+package leandro.safemessaging;
 
-import laj.resources.Formatter;
+import leandro.resources.Formatter;
 
 /**
  *

@@ -1,4 +1,4 @@
-package laj.resources;
+package leandro.resources;
 
 import java.security.Key;
 import java.security.SecureRandom;
